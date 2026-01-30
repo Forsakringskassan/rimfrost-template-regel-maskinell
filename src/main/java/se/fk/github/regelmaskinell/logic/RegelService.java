@@ -47,7 +47,23 @@ public class RegelService implements RegelRequestHandlerInterface
    {
       try
       {
-         processRegelRequest(request);
+         var cloudevent = ImmutableCloudEventData.builder()
+               .id(request.id())
+               .kogitoparentprociid(request.kogitoparentprociid())
+               .kogitoprocid(request.kogitoprocid())
+               .kogitoprocinstanceid(request.kogitoprocinstanceid())
+               .kogitoprocist(request.kogitoprocist())
+               .kogitoprocversion(request.kogitoprocversion())
+               .kogitorootprocid(request.kogitorootprocid())
+               .kogitorootprociid(request.kogitorootprociid())
+               .type(request.type())
+               .source(kafkaSource)
+               .build();
+
+         var utfall = processRegelRequest(request);
+
+         var regelResponse = regelMapper.toRegelResponse(request.kundbehovsflodeId(), cloudevent, utfall);
+         regelKafkaProducer.sendRegelResponse(regelResponse);
       }
       catch (JsonProcessingException e)
       {
@@ -55,21 +71,8 @@ public class RegelService implements RegelRequestHandlerInterface
       }
    }
 
-   private void processRegelRequest(RegelDataRequest request) throws JsonProcessingException
+   private Utfall processRegelRequest(RegelDataRequest request) throws JsonProcessingException
    {
-      var cloudevent = ImmutableCloudEventData.builder()
-            .id(request.id())
-            .kogitoparentprociid(request.kogitoparentprociid())
-            .kogitoprocid(request.kogitoprocid())
-            .kogitoprocinstanceid(request.kogitoprocinstanceid())
-            .kogitoprocist(request.kogitoprocist())
-            .kogitoprocversion(request.kogitoprocversion())
-            .kogitorootprocid(request.kogitorootprocid())
-            .kogitorootprociid(request.kogitorootprociid())
-            .type(request.type())
-            .source(kafkaSource)
-            .build();
-
       /*
        * TODO: The actual rule implementation.
        *
@@ -82,9 +85,6 @@ public class RegelService implements RegelRequestHandlerInterface
        */
 
       // TODO: Replace this with a decision from the rule implementation
-      Utfall utfall = Utfall.JA;
-
-      var regelResponse = regelMapper.toRegelResponse(request.kundbehovsflodeId(), cloudevent, utfall);
-      regelKafkaProducer.sendRegelResponse(regelResponse);
+      return Utfall.JA;
    }
 }
