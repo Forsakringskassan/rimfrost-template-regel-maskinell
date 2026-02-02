@@ -37,4 +37,4 @@ maven-release skapar som del av sitt flöde en docker image.
 Den publiseras till försäkringskassans [repository](https://github.com/Forsakringskassan/repository).
 
 ## Exempel implementation
-Se [rimfrost-regel-rtf-manuell](https://github.com/Forsakringskassan/rimfrost-regel-rtf-manuell) för en färdig implementation av en maskinell regel.
+Se [rimfrost-regel-rtf-maskinell](https://github.com/Forsakringskassan/rimfrost-regel-rtf-maskinell) för en färdig implementation av en maskinell regel.
