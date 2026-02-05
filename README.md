@@ -25,7 +25,7 @@ konfigurerad för att kunna hämta vissa projekt beroenden.
 
 `./mvnw -s settings.xml clean verify`.
 
-## Bygg docker image för local testning
+## Bygg docker image för lokal testning
 
 `./mvnw -s settings.xml clean package`
 
