@@ -1,8 +1,9 @@
-package se.fk.github.maskinellregelratttillforsakring;
+package se.fk.github.regelmaskinell;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -26,11 +27,7 @@ public class WireMockTestResource implements QuarkusTestResourceLifecycleManager
                   .usingFilesUnderDirectory("src/test/resources"));
       server.start();
 
-      return Map.of(
-            "quarkus.rest-client.kundbehovsflode.url", server.baseUrl(),
-            "folkbokford.api.base-url", server.baseUrl(),
-            "arbetsgivare.api.base-url", server.baseUrl(),
-            "kundbehovsflode.api.base-url", server.baseUrl());
+      return new HashMap<>();
    }
 
    @Override

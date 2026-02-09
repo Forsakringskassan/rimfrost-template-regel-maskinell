@@ -18,7 +18,6 @@ import se.fk.rimfrost.framework.regel.*;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +30,7 @@ import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 @QuarkusTest
 @QuarkusTestResource.List(
 {
-      @QuarkusTestResource(se.fk.github.maskinellregelratttillforsakring.WireMockTestResource.class)
+      @QuarkusTestResource(se.fk.github.regelmaskinell.WireMockTestResource.class)
 })
 public class RegelMaskinellTest
 {
@@ -73,7 +72,7 @@ public class RegelMaskinellTest
 
    static void setupWiremock()
    {
-      wiremockServer = se.fk.github.maskinellregelratttillforsakring.WireMockTestResource.getWireMockServer();
+      wiremockServer = WireMockTestResource.getWireMockServer();
    }
 
    public static List<LoggedRequest> waitForWireMockRequest(
