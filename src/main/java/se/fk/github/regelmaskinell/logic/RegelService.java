@@ -8,13 +8,13 @@ import jakarta.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import se.fk.rimfrost.framework.integration.config.RegelConfigProvider;
-import se.fk.rimfrost.framework.integration.kafka.RegelKafkaProducer;
-import se.fk.rimfrost.framework.logic.config.RegelConfig;
-import se.fk.rimfrost.framework.logic.dto.RegelDataRequest;
-import se.fk.rimfrost.framework.logic.entity.ImmutableCloudEventData;
-import se.fk.rimfrost.framework.presentation.kafka.RegelRequestHandlerInterface;
-import se.fk.rimfrost.regel.common.Utfall;
+import se.fk.rimfrost.framework.regel.integration.config.RegelConfigProvider;
+import se.fk.rimfrost.framework.regel.integration.kafka.RegelKafkaProducer;
+import se.fk.rimfrost.framework.regel.logic.config.RegelConfig;
+import se.fk.rimfrost.framework.regel.logic.dto.RegelDataRequest;
+import se.fk.rimfrost.framework.regel.logic.entity.ImmutableCloudEventData;
+import se.fk.rimfrost.framework.regel.presentation.kafka.RegelRequestHandlerInterface;
+import se.fk.rimfrost.framework.regel.Utfall;
 
 @ApplicationScoped
 public class RegelService implements RegelRequestHandlerInterface
@@ -26,7 +26,7 @@ public class RegelService implements RegelRequestHandlerInterface
    RegelKafkaProducer regelKafkaProducer;
 
    @Inject
-   se.fk.rimfrost.framework.logic.RegelMapper regelMapper;
+   se.fk.rimfrost.framework.regel.logic.RegelMapper regelMapper;
 
    @Inject
    RegelConfigProvider regelConfigProvider;
