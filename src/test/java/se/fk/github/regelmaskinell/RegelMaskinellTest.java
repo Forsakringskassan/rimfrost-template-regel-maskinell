@@ -30,7 +30,7 @@ import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 @QuarkusTest
 @QuarkusTestResource.List(
 {
-      @QuarkusTestResource(se.fk.github.regelmaskinell.WireMockTestResource.class)
+      @QuarkusTestResource(WireMockTestResource.class)
 })
 public class RegelMaskinellTest
 {
@@ -39,7 +39,6 @@ public class RegelMaskinellTest
    private static final String regelResponsesChannel = "regel-responses";
    private static final ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
          .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-   private static final String kundbehovsflodeEndpoint = "/kundbehovsflode/";
    private static WireMockServer wiremockServer;
 
    @Inject
