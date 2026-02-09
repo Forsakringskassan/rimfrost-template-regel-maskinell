@@ -22,11 +22,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.Network;
-import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
-import org.testcontainers.utility.MountableFile;
-import se.fk.rimfrost.regel.common.*;
+import se.fk.rimfrost.framework.regel.*;
 
 import java.io.IOException;
 import java.io.InputStream;
