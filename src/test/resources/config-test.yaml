@@ -29,3 +29,6 @@ lagrum:
   paragraf: 5
   stycke: 1
   punkt: 4
+
+utokadUppgiftsbeskrivning:
+  beskrivning: "TestUtokadUppgiftsbeskrivning"
