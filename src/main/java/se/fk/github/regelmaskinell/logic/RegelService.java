@@ -42,6 +42,7 @@ public class RegelService implements RegelMaskinellServiceInterface
 
       var ersattningar = regelResult.ersattning().stream()
             .map(e -> ImmutableErsattningData.builder()
+                  .id(e.ersattningsId())
                   .beslutsutfall(Beslutsutfall.NEJ)
                   .avslagsanledning("Some reason")
                   .build())
