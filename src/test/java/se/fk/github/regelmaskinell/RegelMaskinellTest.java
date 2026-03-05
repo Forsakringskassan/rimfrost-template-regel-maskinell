@@ -35,7 +35,7 @@ public class RegelMaskinellTest
             .build();
 
       var request = ImmutableRegelMaskinellRequest.builder()
-            .kundbehovsflodeId(UUID.randomUUID())
+            .handlaggningId(UUID.randomUUID())
             .personnummer("19900101-1234")
             .formanstyp("VAH")
             .addErsattning(ersattning)
