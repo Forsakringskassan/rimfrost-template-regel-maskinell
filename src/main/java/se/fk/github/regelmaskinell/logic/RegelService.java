@@ -9,15 +9,21 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import se.fk.github.regelmaskinell.logic.entity.RattenTillPeriod;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableProduceratResultat;
+import se.fk.rimfrost.framework.handlaggning.model.Yrkandestatus;
 import se.fk.rimfrost.framework.regel.Utfall;
-import se.fk.rimfrost.framework.regel.logic.dto.Beslutsutfall;
-import se.fk.rimfrost.framework.regel.logic.entity.ImmutableErsattningData;
-import se.fk.rimfrost.framework.regel.logic.entity.ImmutableUnderlag;
-import se.fk.rimfrost.framework.regel.logic.entity.Underlag;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableUnderlag;
+import se.fk.rimfrost.framework.handlaggning.model.Underlag;
 import se.fk.rimfrost.framework.regel.maskinell.logic.RegelMaskinellServiceInterface;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellResult;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellRequest;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellResult;
+
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.util.UUID;
 
 @ApplicationScoped
 public class RegelService implements RegelMaskinellServiceInterface
@@ -29,33 +35,34 @@ public class RegelService implements RegelMaskinellServiceInterface
    ObjectMapper objectMapper;
 
    @Override
-   public RegelMaskinellResult processRegel(RegelMaskinellRequest regelResult)
+   public RegelMaskinellResult processRegel(RegelMaskinellRequest regelRequest)
    {
 
       //TODO Implement the rule and return the result.
       //All information that the rule uses to make a decision should be sent in the result as Underlag.
-      //Ersattningar should be sent in the result if they have been updated with a new beslutsutfall or avslagsanledning.
+      //ProduceratResultat should be sent in the result if a new result has been added or an existing has been updated.
 
-      var underlag = regelResult.ersattning().stream()
-            .map(e -> createUnderlag("Ersättning", "1.0", e))
-            .toList();
+      var underlag = regelRequest.yrkande().produceradeResultat().stream().filter(pr -> pr.typ().equalsIgnoreCase("ersattning"))
+            .map(e -> createUnderlag("Ersättning", 1, e)).toList();
 
-      var ersattningar = regelResult.ersattning().stream()
-            .map(e -> ImmutableErsattningData.builder()
-                  .id(e.ersattningsId())
-                  .beslutsutfall(Beslutsutfall.NEJ)
-                  .avslagsanledning("Some reason")
-                  .build())
-            .toList();
+      var produceratResultat = ImmutableProduceratResultat.builder()
+            .id(UUID.randomUUID())
+            .version(1)
+            .yrkandeStatus(Yrkandestatus.YRKAT)
+            .resultatFrom(OffsetDateTime.of(LocalDateTime.now(), ZoneOffset.UTC))
+            .resultatTom(OffsetDateTime.of(LocalDateTime.now(), ZoneOffset.UTC))
+            .typ("RATTENTILLPERIOD")
+            .data(createProduceratResultatData(new RattenTillPeriod(100)))
+            .build();
 
       return ImmutableRegelMaskinellResult.builder()
             .utfall(Utfall.JA)
             .addAllUnderlag(underlag)
-            .addAllErsattningar(ersattningar)
+            .addProduceradeResultat(produceratResultat)
             .build();
    }
 
-   private Underlag createUnderlag(String typ, String version, Object object)
+   private Underlag createUnderlag(String typ, int version, Object object)
    {
       try
       {
@@ -64,6 +71,18 @@ public class RegelService implements RegelMaskinellServiceInterface
                .version(version)
                .data(objectMapper.writeValueAsString(object))
                .build();
+      }
+      catch (JsonProcessingException e)
+      {
+         throw new InternalError("Could not parse object to String", e);
+      }
+   }
+
+   private String createProduceratResultatData(Object object)
+   {
+      try
+      {
+         return objectMapper.writeValueAsString(object);
       }
       catch (JsonProcessingException e)
       {

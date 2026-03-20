@@ -1,15 +1,20 @@
 package se.fk.github.regelmaskinell;
 
+import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import jakarta.inject.Inject;
 
 import se.fk.github.regelmaskinell.logic.RegelService;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableIndividYrkandeRoll;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableProduceratResultat;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableYrkande;
+import se.fk.rimfrost.framework.handlaggning.model.Yrkandestatus;
 import se.fk.rimfrost.framework.regel.*;
-import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableErsattning;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellRequest;
-import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,28 +28,42 @@ public class RegelMaskinellTest
    @Test
    public void TestRegelMaskinell()
    {
-      var ersattning = ImmutableErsattning.builder()
-            .ersattningsId(UUID.randomUUID())
-            .ersattningsTyp("Dagsersättning")
-            .omfattningsProcent(100)
-            .belopp(40000)
-            .berakningsgrund(40000)
-            .beslutsutfall("JA")
-            .franOchMed(LocalDate.now())
-            .tillOchMed(LocalDate.now())
+      var individYrkandeRoll = ImmutableIndividYrkandeRoll.builder()
+            .individId(UUID.randomUUID())
+            .yrkandeRollId(UUID.randomUUID())
+            .build();
+
+      var produceradeResultat = ImmutableProduceratResultat.builder()
+            .id(UUID.randomUUID())
+            .version(1)
+            .resultatFrom(OffsetDateTime.now(ZoneOffset.UTC))
+            .resultatTom(OffsetDateTime.now(ZoneOffset.UTC))
+            .yrkandeStatus(Yrkandestatus.YRKAT)
+            .typ("ERSATTNING")
+            .data("{}")
+            .build();
+
+      var yrkande = ImmutableYrkande.builder()
+            .id(UUID.randomUUID())
+            .version(1)
+            .erbjudandeId(UUID.randomUUID())
+            .yrkandeDatum(OffsetDateTime.now(ZoneOffset.UTC))
+            .yrkandeStatus(Yrkandestatus.YRKAT)
+            .yrkandeFrom(OffsetDateTime.now(ZoneOffset.UTC))
+            .yrkandeTom(OffsetDateTime.now(ZoneOffset.UTC))
+            .avsikt("NY")
+            .individYrkandeRoller(List.of(individYrkandeRoll))
+            .produceradeResultat(List.of(produceradeResultat))
             .build();
 
       var request = ImmutableRegelMaskinellRequest.builder()
-            .handlaggningId(UUID.randomUUID())
-            .personnummer("19900101-1234")
-            .formanstyp("VAH")
-            .addErsattning(ersattning)
+            .yrkande(yrkande)
             .build();
 
       var result = regelService.processRegel(request);
 
       assertEquals(Utfall.JA, result.utfall());
       assertEquals(1, result.underlag().size());
-      assertEquals(1, result.ersattningar().size());
+      assertEquals(1, result.produceradeResultat().size());
    }
 }
