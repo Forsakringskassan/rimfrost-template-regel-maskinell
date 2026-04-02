@@ -9,12 +9,15 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import se.fk.github.regelmaskinell.logic.entity.RattenTillPeriod;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableHandlaggningUpdate;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableProduceratResultat;
 import se.fk.rimfrost.framework.handlaggning.model.Yrkandestatus;
 import se.fk.rimfrost.framework.regel.Utfall;
+import se.fk.rimfrost.framework.regel.logic.RegelUtils;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUnderlag;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgift;
 import se.fk.rimfrost.framework.handlaggning.model.Underlag;
+import se.fk.rimfrost.framework.handlaggning.model.UppgiftStatus;
 import se.fk.rimfrost.framework.regel.maskinell.logic.RegelMaskinellServiceInterface;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellResult;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellRequest;
@@ -37,56 +40,30 @@ public class RegelService implements RegelMaskinellServiceInterface
    @Override
    public RegelMaskinellResult processRegel(RegelMaskinellRequest regelRequest)
    {
-
       //TODO Implement the rule and return the result.
-      //All information that the rule uses to make a decision should be sent in the result as Underlag.
-      //ProduceratResultat should be sent in the result if a new result has been added or an existing has been updated.
+      //All information that the rule uses to make a decision should be sent as RegelMaskinellResult.HandlaggningUpdate.Underlag (RegelUtils.createUnderlag() can be used to create Underlag objects).
+      //ProduceratResultat should be sent in the RegelMaskinellResult.HandlaggningUpdate.Yrkande.ProduceradeResultat if a new result has been added or an existing has been updated.
 
-      var underlag = regelRequest.yrkande().produceradeResultat().stream().filter(pr -> pr.typ().equalsIgnoreCase("ersattning"))
-            .map(e -> createUnderlag("Ersättning", 1, e)).toList();
+      var uppgift = ImmutableUppgift.builder()
+            .from(regelRequest.uppgift())
+            .utfordTs(OffsetDateTime.now())
+            .uppgiftStatus(UppgiftStatus.AVSLUTAD)
+            .build();
 
-      var produceratResultat = ImmutableProduceratResultat.builder()
-            .id(UUID.randomUUID())
-            .version(1)
-            .yrkandeStatus(Yrkandestatus.YRKAT)
-            .resultatFrom(OffsetDateTime.of(LocalDateTime.now(), ZoneOffset.UTC))
-            .resultatTom(OffsetDateTime.of(LocalDateTime.now(), ZoneOffset.UTC))
-            .typ("RATTENTILLPERIOD")
-            .data(createProduceratResultatData(new RattenTillPeriod(100)))
+      var handlaggningUpdate = ImmutableHandlaggningUpdate.builder()
+            .id(regelRequest.handlaggning().id())
+            .version(regelRequest.handlaggning().version())
+            .yrkande(regelRequest.handlaggning().yrkande())
+            .processInstansId(regelRequest.handlaggning().processInstansId())
+            .skapadTS(regelRequest.handlaggning().skapadTS())
+            .avslutadTS(regelRequest.handlaggning().avslutadTS())
+            .handlaggningspecifikationId(regelRequest.handlaggning().handlaggningspecifikationId())
+            .uppgift(uppgift)
             .build();
 
       return ImmutableRegelMaskinellResult.builder()
+            .handlaggningUpdate(handlaggningUpdate)
             .utfall(Utfall.JA)
-            .addAllUnderlag(underlag)
-            .addProduceradeResultat(produceratResultat)
             .build();
-   }
-
-   private Underlag createUnderlag(String typ, int version, Object object)
-   {
-      try
-      {
-         return ImmutableUnderlag.builder()
-               .typ(typ)
-               .version(version)
-               .data(objectMapper.writeValueAsString(object))
-               .build();
-      }
-      catch (JsonProcessingException e)
-      {
-         throw new InternalError("Could not parse object to String", e);
-      }
-   }
-
-   private String createProduceratResultatData(Object object)
-   {
-      try
-      {
-         return objectMapper.writeValueAsString(object);
-      }
-      catch (JsonProcessingException e)
-      {
-         throw new InternalError("Could not parse object to String", e);
-      }
    }
 }
