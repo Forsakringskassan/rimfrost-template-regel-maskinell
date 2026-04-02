@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import se.fk.github.regelmaskinell.logic.entity.RattenTillPeriod;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableHandlaggningUpdate;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableProduceratResultat;
 import se.fk.rimfrost.framework.handlaggning.model.Yrkandestatus;
