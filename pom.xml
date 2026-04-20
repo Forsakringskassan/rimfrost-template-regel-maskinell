@@ -74,7 +74,17 @@
     <dependency>
       <groupId>se.fk.rimfrost.framework.regel.maskinell</groupId>
       <artifactId>rimfrost-framework-regel-maskinell</artifactId>
-      <version>0.0.20</version>
+      <version>0.0.28</version>
+    </dependency>
+    <dependency>
+      <groupId>se.fk.rimfrost.framework.regel.maskinell</groupId>
+      <artifactId>rimfrost-framework-regel-maskinell-test-base</artifactId>
+      <version>0.0.28</version>
+    </dependency>
+    <dependency>
+      <groupId>se.fk.rimfrost.framework.uppgiftstatusprovider</groupId>
+      <artifactId>rimfrost-framework-uppgift-status-provider</artifactId>
+      <version>0.0.3</version>
     </dependency>
     <dependency>
       <groupId>org.kie</groupId>

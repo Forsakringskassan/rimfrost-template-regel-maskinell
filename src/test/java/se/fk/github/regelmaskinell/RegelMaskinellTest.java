@@ -1,22 +1,20 @@
 package se.fk.github.regelmaskinell;
 
-import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import jakarta.inject.Inject;
 
 import se.fk.github.regelmaskinell.logic.RegelService;
-import se.fk.rimfrost.framework.handlaggning.model.FSSAinformation;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableHandlaggning;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableIdtyp;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableIndividYrkandeRoll;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableProduceratResultat;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgift;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgiftSpecifikation;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableYrkande;
-import se.fk.rimfrost.framework.handlaggning.model.UppgiftStatus;
-import se.fk.rimfrost.framework.handlaggning.model.Yrkandestatus;
 import se.fk.rimfrost.framework.regel.*;
+import se.fk.rimfrost.framework.regel.maskinell.RegelMaskinellTestBase;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellRequest;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -24,7 +22,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
-public class RegelMaskinellTest
+public class RegelMaskinellTest extends RegelMaskinellTestBase
 {
 
    @Inject
@@ -33,9 +31,14 @@ public class RegelMaskinellTest
    @Test
    public void TestRegelMaskinell()
    {
+      var individ = ImmutableIdtyp.builder()
+            .typId(UUID.randomUUID().toString())
+            .varde(UUID.randomUUID().toString())
+            .build();
+
       var individYrkandeRoll = ImmutableIndividYrkandeRoll.builder()
-            .individId(UUID.randomUUID())
-            .yrkandeRollId(UUID.randomUUID())
+            .individ(individ)
+            .yrkandeRollId(UUID.randomUUID().toString())
             .build();
 
       var produceradeResultat = ImmutableProduceratResultat.builder()
@@ -43,7 +46,7 @@ public class RegelMaskinellTest
             .version(1)
             .resultatFrom(OffsetDateTime.now(ZoneOffset.UTC))
             .resultatTom(OffsetDateTime.now(ZoneOffset.UTC))
-            .yrkandeStatus(Yrkandestatus.YRKAT)
+            .yrkandeStatus(UUID.randomUUID().toString())
             .typ("ERSATTNING")
             .data("{}")
             .build();
@@ -51,9 +54,9 @@ public class RegelMaskinellTest
       var yrkande = ImmutableYrkande.builder()
             .id(UUID.randomUUID())
             .version(1)
-            .erbjudandeId(UUID.randomUUID())
+            .erbjudandeId(UUID.randomUUID().toString())
             .yrkandeDatum(OffsetDateTime.now(ZoneOffset.UTC))
-            .yrkandeStatus(Yrkandestatus.YRKAT)
+            .yrkandeStatus(UUID.randomUUID().toString())
             .yrkandeFrom(OffsetDateTime.now(ZoneOffset.UTC))
             .yrkandeTom(OffsetDateTime.now(ZoneOffset.UTC))
             .avsikt("NY")
@@ -75,20 +78,26 @@ public class RegelMaskinellTest
             .version(1)
             .build();
 
+      var utforarId = ImmutableIdtyp.builder()
+            .typId(UUID.randomUUID().toString())
+            .varde(UUID.randomUUID().toString())
+            .build();
+
       var uppgift = ImmutableUppgift.builder()
             .id(UUID.randomUUID())
             .version(1)
             .skapadTs(OffsetDateTime.now())
-            .utforarId(UUID.randomUUID())
-            .uppgiftStatus(UppgiftStatus.TILLDELAD)
+            .utforarId(utforarId)
+            .uppgiftStatus(UUID.randomUUID().toString())
             .aktivitetId(UUID.randomUUID())
-            .fSSAinformation(FSSAinformation.HANDLAGGNING_PAGAR)
+            .fSSAinformation(UUID.randomUUID().toString())
             .uppgiftSpecifikation(uppgiftSpecifikation)
             .build();
 
       var request = ImmutableRegelMaskinellRequest.builder()
             .handlaggning(handlaggning)
             .uppgift(uppgift)
+            .processInstansId(UUID.randomUUID())
             .build();
 
       var result = regelService.processRegel(request);

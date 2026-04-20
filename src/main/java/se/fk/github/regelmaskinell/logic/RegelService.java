@@ -1,32 +1,19 @@
 package se.fk.github.regelmaskinell.logic;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-
+import java.time.OffsetDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableHandlaggningUpdate;
-import se.fk.rimfrost.framework.handlaggning.model.ImmutableProduceratResultat;
-import se.fk.rimfrost.framework.handlaggning.model.Yrkandestatus;
 import se.fk.rimfrost.framework.regel.Utfall;
-import se.fk.rimfrost.framework.regel.logic.RegelUtils;
-import se.fk.rimfrost.framework.handlaggning.model.ImmutableUnderlag;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgift;
-import se.fk.rimfrost.framework.handlaggning.model.Underlag;
-import se.fk.rimfrost.framework.handlaggning.model.UppgiftStatus;
 import se.fk.rimfrost.framework.regel.maskinell.logic.RegelMaskinellServiceInterface;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellResult;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellRequest;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellResult;
-
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.util.UUID;
+import se.fk.rimfrost.framework.uppgiftstatusprovider.UppgiftStatusProvider;
 
 @ApplicationScoped
 public class RegelService implements RegelMaskinellServiceInterface
@@ -36,6 +23,9 @@ public class RegelService implements RegelMaskinellServiceInterface
 
    @Inject
    ObjectMapper objectMapper;
+
+   @Inject
+   UppgiftStatusProvider uppgiftStatusProvider;
 
    @Override
    public RegelMaskinellResult processRegel(RegelMaskinellRequest regelRequest)
@@ -47,14 +37,14 @@ public class RegelService implements RegelMaskinellServiceInterface
       var uppgift = ImmutableUppgift.builder()
             .from(regelRequest.uppgift())
             .utfordTs(OffsetDateTime.now())
-            .uppgiftStatus(UppgiftStatus.AVSLUTAD)
+            .uppgiftStatus(uppgiftStatusProvider.getAvslutadId())
             .build();
 
       var handlaggningUpdate = ImmutableHandlaggningUpdate.builder()
             .id(regelRequest.handlaggning().id())
             .version(regelRequest.handlaggning().version())
             .yrkande(regelRequest.handlaggning().yrkande())
-            .processInstansId(regelRequest.handlaggning().processInstansId())
+            .processInstansId(regelRequest.processInstansId())
             .skapadTS(regelRequest.handlaggning().skapadTS())
             .avslutadTS(regelRequest.handlaggning().avslutadTS())
             .handlaggningspecifikationId(regelRequest.handlaggning().handlaggningspecifikationId())
