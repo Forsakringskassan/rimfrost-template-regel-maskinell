@@ -8,10 +8,10 @@ för att producera ett beslut baserat på olika parametrar som antingen är givn
 Denna mall lämpar sig för maskinella (automatiska) regler 
 som producerar ett beslut utan interaktion med handläggare.
 
-För regler som kräver interaktion med handläggare, se template
-projektet för manuell regel.
+För regler som kräver interaktion med handläggare, se [template
+projektet för manuell regel](https://github.com/Forsakringskassan/rimfrost-template-regel-manuell).
 
-## Minimum konfiguration
+## Minimum konfiguration av utvecklingsmiljö
 
 Projektet förväntar sig att jdk (java version 21 eller högre), 
 docker och maven är installerat på systemet samt att 
@@ -21,7 +21,17 @@ konfigurerade.
 Notera att det GITHUB token som används förväntas ha repo access 
 konfigurerad för att kunna hämta vissa projekt beroenden. 
 
+## TODOS
+
+Projektet innehåller ett antal TODO kommentarer som beskriver konfiguration som bör ändras
+och platser där logik bör fyllas i för att skapa en fungerande regel. Se t.ex. src/main/resources/application.properties
+och src/main/java/se.fk.github.regel/RegelService.java för exempel på dessa.
+
 ## Bygg projektet
+
+`./mvnw -s settings.xml clean compile`.
+
+## Bygg och testa projektet
 
 `./mvnw -s settings.xml clean verify`.
 

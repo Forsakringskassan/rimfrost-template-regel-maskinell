@@ -1,11 +1,5 @@
-package se.fk.github.regelmaskinell;
+package se.fk.github.regel;
 
-import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.Test;
-
-import jakarta.inject.Inject;
-
-import se.fk.github.regelmaskinell.logic.RegelService;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableHandlaggning;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableIdtyp;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableIndividYrkandeRoll;
@@ -13,24 +7,20 @@ import se.fk.rimfrost.framework.handlaggning.model.ImmutableProduceratResultat;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgift;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgiftSpecifikation;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableYrkande;
-import se.fk.rimfrost.framework.regel.*;
-import se.fk.rimfrost.framework.regel.maskinell.RegelMaskinellTestBase;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellRequest;
+import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellRequest;
+
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.util.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+import java.util.UUID;
 
-@QuarkusTest
-public class RegelMaskinellTest extends RegelMaskinellTestBase
+public class RegelTestData
 {
-
-   @Inject
-   RegelService regelService;
-
-   @Test
-   public void TestRegelMaskinell()
+   public static RegelMaskinellRequest newRegelMaskinellRequest()
    {
+      // TODO: Adjust test data values as needed
+
       var individ = ImmutableIdtyp.builder()
             .typId(UUID.randomUUID().toString())
             .varde(UUID.randomUUID().toString())
@@ -94,14 +84,10 @@ public class RegelMaskinellTest extends RegelMaskinellTestBase
             .uppgiftSpecifikation(uppgiftSpecifikation)
             .build();
 
-      var request = ImmutableRegelMaskinellRequest.builder()
+      return ImmutableRegelMaskinellRequest.builder()
             .handlaggning(handlaggning)
             .uppgift(uppgift)
             .processInstansId(UUID.randomUUID())
             .build();
-
-      var result = regelService.processRegel(request);
-
-      assertEquals(Utfall.JA, result.utfall());
    }
 }

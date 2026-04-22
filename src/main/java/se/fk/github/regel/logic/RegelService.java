@@ -1,4 +1,4 @@
-package se.fk.github.regelmaskinell.logic;
+package se.fk.github.regel.logic;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.enterprise.context.ApplicationScoped;
