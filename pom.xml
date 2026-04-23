@@ -82,6 +82,13 @@
       <version>0.0.30</version>
     </dependency>
     <dependency>
+      <!--
+      TODO: Replace this dependency with a suitable implementation of rimfrost-framework-uppgift-status-provider-interface that returns the correct referensdata ids
+
+      This dependency should be replaced with a dependency on a different implementation of rimfrost-framework-uppgift-status-provider-interface
+      that returns the referensdata ids relevant to the deployment environment of the rule. See https://github.com/Forsakringskassan/rimfrost-framework-uppgift-status-provider
+      for a description of the included provider.
+      -->
       <groupId>se.fk.rimfrost.framework.uppgiftstatusprovider</groupId>
       <artifactId>rimfrost-framework-uppgift-status-provider</artifactId>
       <version>0.0.3</version>
