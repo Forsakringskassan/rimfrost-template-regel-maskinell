@@ -1,8 +1,7 @@
 package se.fk.github.regel;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
-import se.fk.rimfrost.framework.regel.maskinell.WireMockRegelMaskinell;
-
+import se.fk.rimfrost.framework.regel.maskinell.helpers.WireMockRegelMaskinell;
 import java.util.HashMap;
 import java.util.Map;
 

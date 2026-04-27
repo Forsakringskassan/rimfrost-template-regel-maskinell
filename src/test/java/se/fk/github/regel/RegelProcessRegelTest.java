@@ -3,13 +3,10 @@ package se.fk.github.regel;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
-
 import jakarta.inject.Inject;
-
 import se.fk.github.regel.logic.RegelService;
 import se.fk.rimfrost.framework.regel.*;
-import se.fk.rimfrost.framework.regel.maskinell.RegelMaskinellTestBase;
-import java.util.*;
+import se.fk.rimfrost.framework.regel.maskinell.base.AbstractRegelMaskinellTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static se.fk.github.regel.RegelTestData.newRegelMaskinellRequest;
 
@@ -18,14 +15,14 @@ import static se.fk.github.regel.RegelTestData.newRegelMaskinellRequest;
 {
       @QuarkusTestResource(WireMockRegel.class)
 })
-public class RegelTest extends RegelMaskinellTestBase
+public class RegelProcessRegelTest extends AbstractRegelMaskinellTest
 {
 
    @Inject
    RegelService regelService;
 
    @Test
-   public void a_template_test()
+   public void a_template_process_regel_test()
    {
       var request = newRegelMaskinellRequest();
 

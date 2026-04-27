@@ -3,13 +3,13 @@ uppgift:
   id: 7028893f-c625-42e1-ab58-5891c0d6834e
   version: 1
   path: /regel/maskinell
-  aktivitet: "Bedömma rätten till"
+  aktivitet: "Bedöma rätten till"
 
 specifikation:
   id: 494726b5-5122-4efc-8a5d-578dcd44df0f
   version: 1
-  namn: "Har kunden rätt till VAH?"
-  uppgiftbeskrivning: "Kontrollerar om personen är folkbokförd i Sverige samt om personen har ett jobb"
+  namn: "Har kunden rätt till ... ?"
+  uppgiftbeskrivning: "Kontrollerar om ..."
   verksamhetslogik: C
   roll: ANSVARIG_HANDLAGGARE
   applikationsId: 3.5.2
@@ -18,8 +18,8 @@ specifikation:
 regel:
   id: caf86a5f-9776-4fce-a854-8d365fa75067
   version: 1
-  namn: "Har kunden arbetsgivare och är folkbokförd"
-  beskrivning: "Maskinell kontroll som kollar om kunden är folkbokförd i sverige samt kollar om personen har en arbetsgivare"
+  namn: "Har kunden ... "
+  beskrivning: "Maskinell kontroll som ... "
 
 lagrum:
   id: 6955bd9b-2019-4589-a460-7bcfd8a43eb5
@@ -32,4 +32,4 @@ lagrum:
   punkt: 3
 
 utokadUppgiftsbeskrivning:
-  beskrivning: "Maskinell kontroll som kollar om kunden är folkbokförd i sverige samt kollar om personen har en arbetsgivare"
+  beskrivning: "Maskinell kontroll som ..."
