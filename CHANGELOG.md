@@ -2,6 +2,16 @@
 
 Changelog of rimfrost-template-regel-maskinell.
 
+## 1.0.0 (2026-04-28)
+
+### Breaking changes
+
+-  release 1.0 ([7d10b](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/7d10b24ccc4c339) Ulf Slunga)  
+
+### Features
+
+-  release 1.0 ([7d10b](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/7d10b24ccc4c339) Ulf Slunga)  
+
 ## 0.0.1 (2026-04-28)
 
 ### Breaking changes
