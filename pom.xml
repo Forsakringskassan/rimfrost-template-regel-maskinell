@@ -71,22 +71,22 @@
       <version>3.13.2</version>
       <scope>test</scope>
     </dependency>
-      <dependency>
-          <groupId>se.fk.rimfrost.framework.regel</groupId>
-          <artifactId>rimfrost-framework-regel</artifactId>
-          <version>0.4.4</version>
-          <classifier>tests</classifier>
-          <scope>test</scope>
-      </dependency>
     <dependency>
-      <groupId>se.fk.rimfrost.framework.regel.maskinell</groupId>
-      <artifactId>rimfrost-framework-regel-maskinell</artifactId>
-      <version>0.0.32</version>
+      <groupId>se.fk.rimfrost.framework.regel</groupId>
+      <artifactId>rimfrost-framework-regel</artifactId>
+      <version>1.0.0</version>
+      <classifier>tests</classifier>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>se.fk.rimfrost.framework.regel.maskinell</groupId>
       <artifactId>rimfrost-framework-regel-maskinell</artifactId>
-      <version>0.0.32</version>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>se.fk.rimfrost.framework.regel.maskinell</groupId>
+      <artifactId>rimfrost-framework-regel-maskinell</artifactId>
+      <version>1.0.0</version>
       <classifier>tests</classifier>
       <scope>test</scope>
     </dependency>
@@ -100,7 +100,7 @@
       -->
       <groupId>se.fk.rimfrost.framework.uppgiftstatusprovider</groupId>
       <artifactId>rimfrost-framework-uppgift-status-provider</artifactId>
-      <version>0.0.3</version>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.kie</groupId>
