@@ -1,4 +1,4 @@
-package se.fk.github.regel;
+package se.fk.github.regeltemplate;
 
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
@@ -13,24 +13,24 @@ import java.util.UUID;
 @QuarkusTest
 @QuarkusTestResource.List(
 {
-      @QuarkusTestResource(WireMockRegel.class)
+      @QuarkusTestResource(WireMockRegelTemplate.class)
 })
-public class RegelHandlaggningTest extends AbstractRegelMaskinellHandlaggningTest
+public class RegelTemplateHandlaggningTest extends AbstractRegelMaskinellHandlaggningTest
 {
 
    @Override
    protected ArrayList<Underlag> createExpectedUnderlag()
    {
       var _template_mydata_1_UnderlagData = ""; // TODO ersätt med regelns förväntade underlag
-       var _template_mydata_2_UnderlagData = ""; // TODO ersätt med regelns förväntade underlag
+      var _template_mydata_2_UnderlagData = ""; // TODO ersätt med regelns förväntade underlag
       return new ArrayList<>(List.of(
             ImmutableUnderlag.builder()
-                  .typ("_TEMPLATE_TYP_1_") // TODO ersätt med underlagstyp
+                  .typ("TEST_UNDERLAG_TYP_1") // TODO ersätt med underlagstyp
                   .version(1)
                   .data(_template_mydata_1_UnderlagData)
                   .build(),
             ImmutableUnderlag.builder()
-                    .typ("_TEMPLATE_TYP_1_") // TODO ersätt med underlagstyp
+                  .typ("TEST_UNDERLAG_TYP_1") // TODO ersätt med underlagstyp
                   .version(1)
                   .data(_template_mydata_2_UnderlagData)
                   .build()));

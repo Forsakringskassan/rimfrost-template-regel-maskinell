@@ -1,4 +1,4 @@
-package se.fk.github.regel;
+package se.fk.github.regeltemplate;
 
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableHandlaggning;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableIdtyp;
@@ -7,6 +7,7 @@ import se.fk.rimfrost.framework.handlaggning.model.ImmutableProduceratResultat;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgift;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgiftSpecifikation;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableYrkande;
+import se.fk.rimfrost.framework.regel.maskinell.base.RegelMaskinellTestData;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellRequest;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellRequest;
 
@@ -15,7 +16,7 @@ import java.time.ZoneOffset;
 import java.util.List;
 import java.util.UUID;
 
-public class RegelTestData
+public class RegelTemplateTestData extends RegelMaskinellTestData
 {
    public static RegelMaskinellRequest newRegelMaskinellRequest()
    {

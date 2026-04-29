@@ -1,11 +1,11 @@
-package se.fk.github.regel;
+package se.fk.github.regeltemplate;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import se.fk.rimfrost.framework.regel.maskinell.helpers.WireMockRegelMaskinell;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WireMockRegel extends WireMockRegelMaskinell
+public class WireMockRegelTemplate extends WireMockRegelMaskinell
 {
    @Override
    protected Map<String, String> wiremockMapping(WireMockServer server)
