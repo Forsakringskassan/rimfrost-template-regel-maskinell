@@ -7,14 +7,13 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableHandlaggningUpdate;
+import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgift;
 import se.fk.rimfrost.framework.handlaggning.model.ImmutableUnderlag;
 import se.fk.rimfrost.framework.regel.Utfall;
-import se.fk.rimfrost.framework.handlaggning.model.ImmutableUppgift;
 import se.fk.rimfrost.framework.regel.maskinell.logic.RegelMaskinellServiceInterface;
-import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellResult;
+import se.fk.rimfrost.framework.regel.maskinell.logic.dto.ImmutableRegelMaskinellSuccessResult;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellRequest;
 import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellResult;
-import se.fk.rimfrost.framework.uppgiftstatusprovider.UppgiftStatusProvider;
 
 @ApplicationScoped
 public class RegelTemplateService implements RegelMaskinellServiceInterface
@@ -23,9 +22,6 @@ public class RegelTemplateService implements RegelMaskinellServiceInterface
    @SuppressWarnings("unused")
    @Inject
    ObjectMapper objectMapper;
-
-   @Inject
-   UppgiftStatusProvider uppgiftStatusProvider;
 
    @Override
    public RegelMaskinellResult processRegel(RegelMaskinellRequest regelRequest)
@@ -37,7 +33,6 @@ public class RegelTemplateService implements RegelMaskinellServiceInterface
       var uppgift = ImmutableUppgift.builder()
             .from(regelRequest.uppgift())
             .utfordTs(OffsetDateTime.now())
-            .uppgiftStatus(uppgiftStatusProvider.getAvslutadId())
             .build();
 
       // TODO replace with underlag of the service
@@ -66,7 +61,7 @@ public class RegelTemplateService implements RegelMaskinellServiceInterface
             .underlag(underlag)
             .build();
 
-      return ImmutableRegelMaskinellResult.builder()
+      return ImmutableRegelMaskinellSuccessResult.builder()
             .handlaggningUpdate(handlaggningUpdate)
             .utfall(Utfall.JA)
             .build();

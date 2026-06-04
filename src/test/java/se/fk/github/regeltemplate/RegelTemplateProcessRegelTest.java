@@ -5,9 +5,11 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 import jakarta.inject.Inject;
 import se.fk.github.regeltemplate.logic.RegelTemplateService;
-import se.fk.rimfrost.framework.regel.*;
+import se.fk.rimfrost.framework.regel.Utfall;
 import se.fk.rimfrost.framework.regel.maskinell.base.AbstractRegelMaskinellTest;
+import se.fk.rimfrost.framework.regel.maskinell.logic.dto.RegelMaskinellSuccessResult;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static se.fk.github.regeltemplate.RegelTemplateTestData.newRegelMaskinellRequest;
 
 @QuarkusTest
@@ -28,7 +30,8 @@ public class RegelTemplateProcessRegelTest extends AbstractRegelMaskinellTest
 
       var result = regelService.processRegel(request);
 
-      assertEquals(Utfall.JA, result.utfall());
+      assertInstanceOf(RegelMaskinellSuccessResult.class, result);
+      assertEquals(Utfall.JA, ((RegelMaskinellSuccessResult) result).utfall());
    }
 
    // TODO: Add more tests as needed
