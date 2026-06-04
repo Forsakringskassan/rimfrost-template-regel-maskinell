@@ -1,7 +1,6 @@
 package se.fk.github.regeltemplate.logic;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import java.time.OffsetDateTime;
@@ -24,7 +23,6 @@ public class RegelTemplateService implements RegelMaskinellServiceInterface
    @Inject
    ObjectMapper objectMapper;
 
-   @SuppressFBWarnings(value = "NP_NONNULL_PARAM_VIOLATION", justification = "False positive for uppgiftStatus field. UppgiftStatus field is marked as nullable.")
    @Override
    public RegelMaskinellResult processRegel(RegelMaskinellRequest regelRequest)
    {
@@ -35,7 +33,6 @@ public class RegelTemplateService implements RegelMaskinellServiceInterface
       var uppgift = ImmutableUppgift.builder()
             .from(regelRequest.uppgift())
             .utfordTs(OffsetDateTime.now())
-            .uppgiftStatus(null)
             .build();
 
       // TODO replace with underlag of the service
