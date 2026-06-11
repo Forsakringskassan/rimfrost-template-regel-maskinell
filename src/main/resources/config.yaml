@@ -2,7 +2,8 @@
 uppgift:
   id: 7028893f-c625-42e1-ab58-5891c0d6834e
   version: 1
-  path: /regel/maskinell
+  # Används inte av maskinella regler — kan utelämnas
+  # path: /regel/manuell-exempel
   aktivitet: "Bedöma rätten till"
 
 specifikation:
@@ -31,5 +32,4 @@ lagrum:
   stycke: 2
   punkt: 3
 
-utokadUppgiftsbeskrivning:
-  beskrivning: "Maskinell kontroll som ..."
+# utokadUppgiftsbeskrivning används inte av maskinella regler
