@@ -2,6 +2,38 @@
 
 Changelog of rimfrost-template-regel-maskinell.
 
+## 1.1.1 (2026-06-26)
+
+### Bug Fixes
+
+-  add config.yaml validation to CI and bump rimfrost-framework-regel to 1.2.3 ([db86f](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/db86f8bb635ad3d) Ulf Slunga)  
+-  Bump rimfrost-framework-regel-maskinell version ([c8179](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/c8179d595c5e8a3) Lars Persson)  
+-  document unused config fields in config.yaml ([1a85b](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/1a85b735b620b22) Ulf Slunga)  
+-  remove unused uppgift-status-provider index-dependency ([ee00a](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/ee00a2cfe04d06a) Ulf Slunga)  
+
+### Dependency updates
+
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.2.1 ([2879d](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/2879d6ab2509686) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.1.4 ([46828](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/468281330e70bfe) renovate[bot])  
+## rimfrost-1.1 (2026-06-04)
+
+### Bug Fixes
+
+-  remove redundant SuppressFBWarnings and explicit null uppgiftStatus ([1ff10](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/1ff100936f92133) Ulf Slunga)  
+-  bump rimfrost-framework-regel-maskinell to 1.0.7 and adapt to new API ([32a99](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/32a992b52552337) Ulf Slunga)  
+-  **deps**  update dependency org.kie:kie-dmn-core to v10.2.0 (#18) ([bce96](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/bce9645dda7dd69) renovate[bot])  
+-  tar bort dependency till test-containers ([4f283](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/4f28371e1f42737) Ulf Slunga)  
+-  körbara tester ([dbcca](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/dbcca73485835b0) Ulf Slunga)  
+
+### Dependency updates
+
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.0.7 ([57c96](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/57c960fbc8cf722) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.0.6 ([7f7e7](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/7f7e725b3ea1121) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.0.5 ([41ac2](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/41ac2fb712269a3) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.0.4 ([03b3d](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/03b3d89c002a759) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.0.3 ([65790](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/65790ea4cdd6f63) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.0.2 ([43fab](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/43fab14f986d222) renovate[bot])  
+- update dependency org.kie.kogito:kogito-quarkus-test-utils to v10.2.0 (#17) ([5b7d9](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/5b7d9f53ae6ea0c) renovate[bot])  
 ## 1.0.0 (2026-04-28)
 
 ### Breaking changes
