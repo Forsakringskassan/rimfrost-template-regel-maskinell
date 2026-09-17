@@ -51,7 +51,7 @@ public class RegelTemplateService implements RegelMaskinellServiceInterface
 
       var handlaggningUpdate = ImmutableHandlaggningUpdate.builder()
             .id(regelRequest.handlaggning().id())
-            .version(regelRequest.handlaggning().version())
+            .version(regelRequest.handlaggning().version() + 1)
             .yrkande(regelRequest.handlaggning().yrkande())
             .processInstansId(regelRequest.processInstansId())
             .skapadTS(regelRequest.handlaggning().skapadTS())
