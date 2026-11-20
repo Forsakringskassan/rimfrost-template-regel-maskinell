@@ -2,6 +2,35 @@
 
 Changelog of rimfrost-template-regel-maskinell.
 
+## 1.2.0 (2026-11-20)
+
+### Features
+
+-  Bump dependencies ([bc934](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/bc9341adb898418) Lars Persson)  
+
+### Bug Fixes
+
+-  bump framework maskinell ([dfb65](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/dfb653dba5a5665) Nils Elveros)  
+-  **deps**  update dependency se.fk.rimfrost.framework.regel.maskinell:rimfrost-framework-regel-maskinell to v1.2.2 ([b77d2](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/b77d2e2b147ab81) renovate[bot])  
+-  **deps**  update dependency se.fk.rimfrost.framework.regel.maskinell:rimfrost-framework-regel-maskinell to v1.2.1 ([fcd62](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/fcd629703d4a957) renovate[bot])  
+
+### Dependency updates
+
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.6.2 ([f4285](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/f4285354728e1e4) renovate[bot])  
+- update forsakringskassan/rimfrost-framework-regel action to v1.6.1 ([55677](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/556778aee313210) renovate[bot])  
+- update dependency se.fk.rimfrost.framework.regel:rimfrost-framework-regel to v1.6.1 (#34) ([ea6a5](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/ea6a54189eec8e3) renovate[bot])  
+- update forsakringskassan/rimfrost-framework-regel action to v1.6.0 ([81879](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/81879550dde86c0) renovate[bot])  
+- update forsakringskassan/.github digest to cbc0db8 ([aa18c](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/aa18cc47bf0aa98) renovate[bot])  
+- update forsakringskassan/rimfrost-framework-regel action to v1.5.0 ([44cd0](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/44cd08a63942e4e) renovate[bot])  
+- update forsakringskassan/rimfrost-framework-regel action to v1.4.6 ([eb172](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/eb1720ef6f105b9) renovate[bot])  
+- update forsakringskassan/.github digest to 625efb1 ([4f80f](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/4f80f55873c3509) renovate[bot])  
+- update forsakringskassan/.github digest to 733eb32 (#32) ([481e0](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/481e09312426de3) renovate[bot])  
+- update forsakringskassan/rimfrost-framework-regel action to v1.4.4 ([f796e](https://github.com/Forsakringskassan/rimfrost-template-regel-maskinell/commit/f796ef6e5d3e8e9) renovate[bot])  
+### Other changes
+
+
+## rimfrost-1_2 (2026-09-23)
+
 ## 1.1.2 (2026-09-23)
 
 ### Bug Fixes
